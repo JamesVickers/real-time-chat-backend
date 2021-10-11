@@ -28,9 +28,9 @@ const socket = ({ io }: { io: Server }) => {
     logging.info(NAMESPACE, `Socket connected, socket id: ${socket.id}`);
     // console.log("Socket connected, full socket: ", socket);
 
-    socket.on("chat", (payload) => {
+    socket.on(EVENTS.CLIENT.CREATE_MESSAGE, (payload) => {
       // console.log("chat payload: ", payload);
-      io.emit("chat", payload);
+      io.emit(EVENTS.SERVER.NEW_MESSAGE, payload);
     });
   });
 };
